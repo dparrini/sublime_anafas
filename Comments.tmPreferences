@@ -4,7 +4,7 @@
   <key>name</key>
   <string>OpenDSS Comments</string>
   <key>scope</key>
-  <string>source.anafas</string>
+  <string>text.anafas</string>
   <key>settings</key>
   <dict>
     <key>shellVariables</key>

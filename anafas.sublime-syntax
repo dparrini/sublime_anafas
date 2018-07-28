@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 name: ANAFAS
-scope: source.anafas
+scope: text.anafas
 file_extensions:
   - ana
 
