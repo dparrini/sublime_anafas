@@ -1,0 +1,11 @@
+{
+  "rulers":
+  [
+   80, 112, 220
+  ],
+  "tab_size": 4,
+  "translate_tabs_to_spaces": true,
+  "auto_indent": false,
+  "auto_match_enabled" : false,
+  "word_wrap": false
+}
