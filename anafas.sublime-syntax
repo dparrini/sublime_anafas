@@ -2,19 +2,20 @@
 ---
 name: ANAFAS
 scope: source.anafas
-file_extensions: [ana]
+file_extensions:
+  - ana
 
 
 variables:
-  fimbloco: "^99999"
-  arquivo: "[a-zA-Z0-9_.]*"
-  codigo: "(?i)(ACDE|ACDU|ANAC|ANAT|ARQM|ARQV|CASO|DARQ|DAVS|DCAG|DCAR|DCCT|DCDU|DCEN|DCER|DCLI|DCNE|DCNV|DCSC|DCST|DCTE|DDFM|DECS|DELO|DERA|DEST|DEVS|DEVT|DFCM|DFLA|DFNT|DGER|DGSE|DLDN|DLMQ|DLOC|DLTC|DMAQ|DMCE|DMCS|DMCV|DMDF|DMDG|DMGE|DMEL|DMOT|DMTC|DOPC|DOS|DPLT|DREL|DRGT|DRGV|DSIM|DTDU|DTMQ|DVSI|ETMQ|EXSI|FIM|INFO|RELA|SNAP|TITU|ULOG)"
-  opcoes: "(?i)(/+|1046|80CO|CCCO|CILH|CONV|CONT|DCNI|DESV|DLCC|DNWT|ECHO|IEPS|IERR|FILE|FLXT|FREQ|GRAV|IMPR|INIC|IRMX|LIST|MCDU|MD01|MD02|MD03|MD04|MD05|MD06|MD07|MD08|MD09|MD10|MD11|MD12|MD13|MD14|MD15|MD16|MD17|MD18|MD19|MD20|MD21|MD22|MD23|MD24|NEWT|RBAR|RBCN|RBER|RBLI|RCAR|RCDU|RCEN|RCMT|RCSC|RCTE|RCVP|RCVT|RDIM|RERA|REST|RGER|RILH|RLDC|RLIN|RLOG|RMOT|RMXG|RMXY|ROPC|ROPG|SADD|SAD2|SAD3)"
+  card_end: "(?:99999|F)"
+  filename: "[a-zA-Z0-9_.]*"
+  card: "(?i)(ACDE|ACDU|ANAC|ANAT|ARQM|ARQV|CASO|DARQ|DAVS|DCAG|DCAR|DCCT|DCDU|DCEN|DCER|DCLI|DCNE|DCNV|DCSC|DCST|DCTE|DDFM|DECS|DELO|DERA|DEST|DEVS|DEVT|DFCM|DFLA|DFNT|DGER|DGSE|DLDN|DLMQ|DLOC|DLTC|DMAQ|DMCE|DMCS|DMCV|DMDF|DMDG|DMGE|DMEL|DMOT|DMTC|DOPC|DOS|DPLT|DREL|DRGT|DRGV|DSIM|DTDU|DTMQ|DVSI|ETMQ|EXSI|FIM|INFO|RELA|SNAP|TITU|ULOG)"
+  options: "(?i)(/+|1046|80CO|CCCO|CILH|CONV|CONT|DCNI|DESV|DLCC|DNWT|ECHO|IEPS|IERR|FILE|FLXT|FREQ|GRAV|IMPR|INIC|IRMX|LIST|MCDU|MD01|MD02|MD03|MD04|MD05|MD06|MD07|MD08|MD09|MD10|MD11|MD12|MD13|MD14|MD15|MD16|MD17|MD18|MD19|MD20|MD21|MD22|MD23|MD24|NEWT|RBAR|RBCN|RBER|RBLI|RCAR|RCDU|RCEN|RCMT|RCSC|RCTE|RCVP|RCVT|RDIM|RERA|REST|RGER|RILH|RLDC|RLIN|RLOG|RMOT|RMXG|RMXY|ROPC|ROPG|SADD|SAD2|SAD3)"
 
 
 contexts:
   main:
-    - include: comentario
+    - include: comment
 
     - match: (?i)^(TIPO|  0)
       scope: keyword.control
@@ -70,7 +71,7 @@ contexts:
       scope: keyword.control
       push: DARE
 
-    - match: (?i)^{{codigo}}
+    - match: (?i)^{{card}}
       scope: keyword.control
 
     - match: (?i)(FIM| 99)
@@ -80,71 +81,64 @@ contexts:
     - match: $
       pop: true
 
-  fim:
-    - match: "{{fimbloco}}"
-      scope: keyword.control
+  card-end:
+    - match: ^{{card_end}}
+      scope: keyword.end.anafas
       set: main
 
-  comentario:
+  comment:
     - match: (?=^\()
-      push: comentario_linha
+      push: 
+        - meta_scope: comment.line.anafas
+        - include: eol-pop
+        - match: ^\(
+          scope: punctuation.definition.comment.anafas
 
-    - comment: após coluna 80
-      match: (?<=^.{80})(.*)
-      push: comentario_coluna80
-
-
-  comentario_linha:
-    - meta_scope: comment.line.anafas
-    - match: ^(\()
-      scope: punctuation.definition.comment.anafas
-    - include: eol-pop
-
-  comentario_coluna80:
-    - meta_scope: comment.block.anafas
-    - include: eol-pop
-
-  numeros:
+  numbers:
     - comment: Números
       match: '\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b'
       scope: constant.numeric
 
+  no-comments:
+    - match: ^\(.*(?=$)
+      scope: invalid.illegal.anafas
+      pop: true
 
   TIPO:
-    - include: comentario
+    - include: comment
     - meta_scope: meta.tipo.anafas
     - match: (?i)^(P|A|[0-2])
       scope: constant.language.anafas
       pop: true
 
   TITU:
-    - include: comentario
     - meta_scope: meta.titu.anafas
+    - include: no-comments
+
     - match: ^(.{1,80})(.*)
       captures:
         1: string.unquoted.anafas
         2: comment.line
       pop: true
 
-  BASE:
-    - include: comentario
-    - match: '\b((([0-9]+\.?[0-9]*)|(\.[0-9]+)))?\b'
-      scope: constant.numeric.anafas
-      pop: true
-
   CMNT:
-    - include: comentario
     - meta_scope: meta.cmnt.anafas
+    - include: no-comments
     - match: ^.*
       scope: string.unquoted.anafas
       pop: true
 
+  BASE:
+    - include: comment
+    - match: '\b((([0-9]+\.?[0-9]*)|(\.[0-9]+)))?\b'
+      scope: constant.numeric.anafas
+      pop: true
 
   DBAR:
-    - include: fim
-    - include: comentario
+    - include: card-end
+    - include: comment
 
-    - comment: comentario final da linha
+    - comment: comment final da linha
       match: (?i)(?<=.{77}).*$
       scope: comment.line
 
@@ -233,10 +227,10 @@ contexts:
       scope: support.class
 
   DCIR:
-    - include: fim
-    - include: comentario
+    - include: card-end
+    - include: comment
 
-    - comment: comentario de final de linha (temporário)
+    - comment: comment de final de linha (temporário)
       match: (?i)(?<=.{67}).*$
       scope: comment.line
 
@@ -297,30 +291,30 @@ contexts:
       scope: support.class
 
   DMUT:
-    - include: fim
-    - include: comentario
-    - include: numeros
+    - include: card-end
+    - include: comment
+    - include: numbers
 
   DMOV:
-    - include: fim
-    - include: comentario
-    - include: numeros
+    - include: card-end
+    - include: comment
+    - include: numbers
 
   DSHL:
-    - include: fim
-    - include: comentario
-    - include: numeros
+    - include: card-end
+    - include: comment
+    - include: numbers
 
   DEOL:
-    - include: fim
-    - include: comentario
-    - include: numeros
+    - include: card-end
+    - include: comment
+    - include: numbers
 
   DARE:
-    - include: fim
-    - include: comentario
+    - include: card-end
+    - include: comment
 
-    - comment: comentario final da linha
+    - comment: comment final da linha
       match: (?i)(?<=^.{54}).*$
       scope: comment.block.anafas
 
@@ -328,7 +322,7 @@ contexts:
       match: (?i)(?<=^.{18}).{1,36}
       scope: entity.name.area.anafas
 
-    - comment: comentario entre campos
+    - comment: comment entre campos
       match: (?i)(?<=^.{6}).{12}
       scope: comment.block.anafas
 
@@ -336,7 +330,7 @@ contexts:
       match: (?i)(?<=^.{5}).
       scope: support.class
 
-    - comment: comentario entre campos
+    - comment: comment entre campos
       match: (?i)(?<=^.{3}).{2}
       scope: comment.block.anafas
 
@@ -345,6 +339,6 @@ contexts:
       scope: constant.numeric.anafas
 
 
-  opcoes:
-    - match: \b({{opcoes}})\b
+  options:
+    - match: \b({{options}})\b
       scope: variable.language
