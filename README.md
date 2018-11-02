@@ -24,7 +24,7 @@ The syntax definition is available at [GitHub](https://github.com/dparrini/subli
 🇵🇹-🇧🇷 Definições de sintaxe disponíveis no [GitHub](https://github.com/dparrini/sublime_opendss) sob a licença MIT.
 
 
-## 🇵🇹-🇧🇷 Recursos
+## 🇵🇹 🇧🇷 Recursos
 
 Na atual versão alguns códigos de execução são suportados. A tabela à seguir contém a lista de códigos de execução e quais recursos a versão mais recente suporta.
 

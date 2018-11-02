@@ -9,11 +9,12 @@ class PlaceRulerCommand(sublime_plugin.TextCommand):
             line = self.view.line(region)
             
             iline, _ = self.view.rowcol(line.begin())
-            print("Cursor at line", iline)
+            if DEBUG_MESSAGES:
+                print("Cursor at line", iline)
             card, at_line, ftype = parse_to_the_line(self.view, iline)
 
             if card is not None:
-                if ftype == "P":
+                if ftype == FORMAT_PECO:
                     ruler_list = card_rulers_peco
                 else:
                     ruler_list = card_rulers_anafas
@@ -28,8 +29,12 @@ class PlaceRulerCommand(sublime_plugin.TextCommand):
             # insert ruler
             self.view.insert(edit, line.begin(), ruler + "\n")
 
-            
 
+DEBUG_MESSAGES = True
+            
+# file format types
+FORMAT_PECO = "P"
+FORMAT_ANAFAS = "A"
 
 # rulers by data card
 RULER_DEFAULT = "("
@@ -81,7 +86,7 @@ alt_cards = [
 ]
 
 # data card ending
-card_endings = ["99999", "F"]
+card_endings = "(?i)^(99999|F)\\s*$"
 
 # PECO format rulers dictionary
 card_rulers_peco = {
@@ -107,24 +112,35 @@ card_rulers_anafas[CARD_DBAR] = RULER_DBAR_ANAFAS
 
 
 def parse_to_the_line(view, line):
-    ftype = "P"
+    ftype = FORMAT_PECO
     card = None
     at_line = line
 
     for iline in range(line, -1, -1):
         point = view.text_point(iline, 0)
         content = view.substr(view.line(point))
-        print("Going up:", content)
-        card = is_card(content, alt_cards)
-        if card is not None:
-            print("Card found!", card)
-            at_line = iline
+        if DEBUG_MESSAGES:
+            print("Going up:", content)
+
+        if not is_card_ending(content):
+            card = is_card(content, alt_cards)
+            if card is not None:
+                if DEBUG_MESSAGES:
+                    print("Card found!", card)
+                at_line = iline
+                break
+        else:
+            if DEBUG_MESSAGES:
+                print("Data card ending found!")
             break
 
     return card, at_line, ftype
 
 
 def is_card(content, cards):
+    """
+    Checks whether the current line contents is a data card starting string.
+    """
     card = None
     for icards in cards:
         actual_card = icards[0]
@@ -135,3 +151,10 @@ def is_card(content, cards):
             break
     return card
 
+
+def is_card_ending(content):
+    """
+    Checks whether the current line contents is a data card ending string.
+    """
+    ending_regex = re.compile(card_endings)
+    return ending_regex.match(content) is not None
