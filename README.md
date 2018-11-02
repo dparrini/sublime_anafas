@@ -30,17 +30,17 @@ Na atual versão alguns códigos de execução são suportados. A tabela à segu
 
 | Código | Coloração | Autocompletar | Régua |
 |:------:|:---------:|:-------------:|:-----:|
-| BASE 	 |     X     |       X       |       |
-| CMNT 	 |     X     |       X       |       |
-| DARE 	 |     X     |       X       |       |
-| DBAR 	 |     X     |       X       |       |
-| DCIR 	 |           |       X       |       |
-| DEOL 	 |           |       X       |       |
-| DMOT 	 |           |       X       |       |
-| DMOV 	 |           |       X       |       |
-| DMUT 	 |           |       X       |       |
+| BASE 	 |     X     |       X       |   X   |
+| CMNT 	 |     X     |       X       |   X   |
+| DARE 	 |     X     |       X       |   X   |
+| DBAR 	 |     X     |       X       |   X   |
+| DCIR 	 |           |       X       |   X   |
+| DEOL 	 |           |       X       |   X   |
+| DMOT 	 |           |       X       |   X   |
+| DMOV 	 |           |       X       |   X   |
+| DMUT 	 |           |       X       |   X   |
 | DREB 	 |     X     |       X       |       |
-| DSHL 	 |           |       X       |       |
-| FIM 	 |     X     |       X       |       |
-| TIPO 	 |     X     |       X       |       |
-| TITU 	 |     X     |       X       |       |
+| DSHL 	 |           |       X       |   X   |
+| FIM 	 |     X     |       X       |   X   |
+| TIPO 	 |     X     |       X       |   X   |
+| TITU 	 |     X     |       X       |   X   |
