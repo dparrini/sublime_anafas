@@ -1,0 +1,21 @@
+{
+   "scope": "source.anafas",
+
+   "completions":
+   [
+      { "trigger": "TIPO\tFormato de dados", "contents" : "TIPO\n${1:P}" },
+      { "trigger": "TITU\tTítulo do caso", "contents": "TITU     1\n${1:Título do caso}" },
+      { "trigger": "CMNT\tComentário", "contents": "CMNT     1\n${1:Comentário}" },
+      { "trigger": "BASE\tBase de potência em MVA", "contents": "BASE\n( Base de potência em MVA\n${1:100}" },
+      { "trigger": "DARE\tÁrea", "contents": "DARE\n(NN  C                            NOME                \n(--  =            ------------------------------------\n$1\n99999\n"},
+      { "trigger": "DMOV\tDados de capacitores séries protegido por MOV", "contents": "DMOV\n(BF  C   BT  NC  VBAS   Ipr      Imax     Emax     Pmax\n(                (kV) (A rms)  (A rms)  (MJ/fas) (MW/fas)\n(--- -  ====---- ==== -------- ======== -------- ========\n$1\n99999\n"},
+      { "trigger": "DMUT\tDados de Mútua", "contents": "DMUT\n(BF1 CE BT1   N1 BF2    BT2   N2  RM    XM     %I1   %F1   %I2   %F2  IA SA\n(----=-=====  ==-----  =====  ==------====== ------======------======--- ==\n$1\n99999\n"},
+      { "trigger": "DSHL\tDados de Shunt de Linha", "contents": "DSHL\n(BF  CE BT    NCTNG  Qpos  L  Rn    Xn  E Nome  NunNop               IA  SA                                     Nome Extendido\n(====-=-----  ==-== ====== =------======-====== ===---               === ==                                     ====================\n$1\n99999\n"},
+      { "trigger": "DEOL\tDados de Eólicas", "contents": "DEOL\n(NB  CE       NG P_inic I_max V_min F_potNNNNNN NunNop               AAA\n(====-=      === ======------======------====== ===---               ===\n$1\n99999\n"},
+      { "trigger": "DREB\tDados de Renumeração Automática de Barras", "contents": "DREB\n(\n$1\n99999\n"},
+      // PECO
+      { "trigger": "DCIR\tDados de Circuitos (PECO)", "contents": "DCIR\n(BF  CE  BT   NCT  R1    X1    R0    X0    CN                  TB  TCIA DEF  KM CD RNDE  XNDE CP RNPA  XNPA SA     NunNop DJ_BF CicDJ_BT Cic                    DDMMAAAADDMMAAAA M.V.A              TD     NOME EXTENSO\n(----=-=====  --=------======------======------               -----==---=== ====--======------==------======---    ===--- ======---======---                    ========-------- =====              == --------------------\n$1\n99999\n"},
+      { "trigger": "DBAR\tDados de Barra (PECO)", "contents": "DBAR\n(NB  CEM      BN               VBAS DISJUN          DDMMAAAADDMMAAAA IA SA  F\n(----=-= ------------          ---- ------          --------======== ---=== -\n$1\n99999\n"},
+      "FIM"
+   ]
+}

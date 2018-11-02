@@ -2,7 +2,7 @@
 <plist version="1.0">
 <dict>
   <key>name</key>
-  <string>OpenDSS Comments</string>
+  <string>Anafas Comments</string>
   <key>scope</key>
   <string>text.anafas</string>
   <key>settings</key>

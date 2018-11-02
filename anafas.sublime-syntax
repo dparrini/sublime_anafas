@@ -1,207 +1,248 @@
 %YAML 1.2
 ---
 name: ANAFAS
-scope: text.anafas
-file_extensions:
-  - ana
+scope: source.anafas
+file_extensions: [ana]
 
 
 variables:
-  card_end: "(?:99999|F)"
-  filename: "[a-zA-Z0-9_.]*"
-  card: "(?i)(ACDE|ACDU|ANAC|ANAT|ARQM|ARQV|CASO|DARQ|DAVS|DCAG|DCAR|DCCT|DCDU|DCEN|DCER|DCLI|DCNE|DCNV|DCSC|DCST|DCTE|DDFM|DECS|DELO|DERA|DEST|DEVS|DEVT|DFCM|DFLA|DFNT|DGER|DGSE|DLDN|DLMQ|DLOC|DLTC|DMAQ|DMCE|DMCS|DMCV|DMDF|DMDG|DMGE|DMEL|DMOT|DMTC|DOPC|DOS|DPLT|DREL|DRGT|DRGV|DSIM|DTDU|DTMQ|DVSI|ETMQ|EXSI|INFO|RELA|SNAP|TITU|ULOG)"
+  card_ending: "^99999|^F(\\s)*$"
   options: "(?i)(/+|1046|80CO|CCCO|CILH|CONV|CONT|DCNI|DESV|DLCC|DNWT|ECHO|IEPS|IERR|FILE|FLXT|FREQ|GRAV|IMPR|INIC|IRMX|LIST|MCDU|MD01|MD02|MD03|MD04|MD05|MD06|MD07|MD08|MD09|MD10|MD11|MD12|MD13|MD14|MD15|MD16|MD17|MD18|MD19|MD20|MD21|MD22|MD23|MD24|NEWT|RBAR|RBCN|RBER|RBLI|RCAR|RCDU|RCEN|RCMT|RCSC|RCTE|RCVP|RCVT|RDIM|RERA|REST|RGER|RILH|RLDC|RLIN|RLOG|RMOT|RMXG|RMXY|ROPC|ROPG|SADD|SAD2|SAD3)"
 
 
 contexts:
   main:
     - include: comment
+    - include: main_anafas
 
     - match: (?i)^(TIPO|  0)
-      scope: keyword.control
+      scope: keyword.control.anafas
       push: TIPO
 
-    - match: (?i)^(TITU|  1)((    )([0-9 ]{2}))?$
-      scope: keyword.control
-      captures:
-        1: keyword.control
-        2: comment.line
-        3: comment.line
-        4: constant.numeric
+  main_common:
+    - include: comment
+
+    - match: (?i)^(TITU|  1)
+      scope: keyword.control.anafas
       push: TITU
 
-    - match: (?i)^(CMNT|  2)((    )([0-9 ]{2}))?
-      captures:
-        1: keyword.control
-        2: comment.line
-        3: comment.line
-        4: constant.numeric
-      scope: keyword.control
+    - match: (?i)^(CMNT|  2)
+      scope: keyword.control.anafas
       push: CMNT
 
     - match: (?i)^(BASE|100)
-      scope: keyword.control
+      scope: keyword.control.anafas
       push: BASE
 
-    - match: (?i)^(DBAR| 38)
-      scope: keyword.control
-      push: DBAR
-
-    - match: (?i)^(DCIR| 37)
-      scope: keyword.control
-      push: DCIR
-
     - match: (?i)^(DMUT| 39)
-      scope: keyword.control
+      scope: keyword.control.anafas
       push: DMUT
 
     - match: (?i)^(DMOV| 36)
-      scope: keyword.control
+      scope: keyword.control.anafas
       push: DMOV
 
     - match: (?i)^(DSHL| 35)
-      scope: keyword.control
+      scope: keyword.control.anafas
       push: DSHL
 
     - match: (?i)^(DEOL)
-      scope: keyword.control
+      scope: keyword.control.anafas
       push: DEOL
 
     - match: (?i)^(DARE)
-      scope: keyword.control
+      scope: keyword.control.anafas
       push: DARE
 
-    - match: (?i)^{{card}}
-      scope: keyword.control
+    - match: (?i)^(DREB)
+      scope: keyword.control.anafas
+      push: DREB
 
-    - match: (?i)(FIM| 99)
-      scope: keyword.control
+    - match: (?i)(?=^FIM| 99)
       push: FIM
+
+
+  main_peco:
+    - include: comment
+    - include: main_common
+
+    - match: (?i)^(DBAR| 38)
+      scope: keyword.control.anafas
+      push: DBAR_peco
+
+    - match: (?i)^(DCIR| 37)
+      scope: keyword.control.anafas
+      push: DCIR_peco
+
+  main_anafas:
+    - include: comment
+    - include: main_common
+
+    - match: (?i)^(DBAR| 38)
+      scope: keyword.control.anafas
+      push: DBAR_anafas
+
+    - match: (?i)^(DCIR| 37)
+      scope: keyword.control.anafas
+      push: DCIR_anafas
 
   eol-pop:
     - match: $
       pop: true
 
-  card-end:
-    - match: ^{{card_end}}
-      scope: keyword.end.anafas
-      set: main
+  card_end:
+    - match: "{{card_ending}}"
+      scope: keyword.control.anafas
+      pop: true
+
+  FIM:
+    - meta_scope: meta.fim.anafas
+    - match: (?i)^FIM
+      scope: keyword.control.anafas
+    - match: .
+      scope: comment.block.anafas
 
   comment:
     - match: (?=^\()
-      push: 
-        - meta_scope: comment.line.anafas
-        - include: eol-pop
-        - match: ^\(
-          scope: punctuation.definition.comment.anafas
+      push: comment_linha
+
+    - comment: após coluna 80
+      match: (?<=^.{80})(.*)
+      push: comment_coluna80
+
+
+  comment_linha:
+    - meta_scope: comment.line.anafas
+    - match: ^(\()
+      scope: punctuation.definition.comment.anafas
+    - include: eol-pop
+
+  comment_coluna80:
+    - meta_scope: comment.block.anafas
+    - include: eol-pop
 
   numbers:
     - comment: Números
       match: '\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b'
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
-  no-comments:
-    - match: ^\(.*(?=$)
-      scope: invalid.illegal.anafas
-      pop: true
 
   TIPO:
     - include: comment
     - meta_scope: meta.tipo.anafas
-    - match: (?i)^(P|A|[0-2])
+    - match: (?i)^(P)
       scope: constant.language.anafas
-      pop: true
+      set: main_peco
+
+    - comment: default Anafas format
+      match: (?i)^(A)( [0-2])?
+      captures:
+        1: constant.language.anafas
+        2: constant.numeric.anafas
+      set: main
 
   TITU:
+    - include: comment
     - meta_scope: meta.titu.anafas
-    - include: no-comments
+
+    - match: "(?<=TITU {4}|  1 {5})[ 0-9][0-9]"
+      scope: constant.numeric.anafas
 
     - match: ^(.{1,80})(.*)
       captures:
         1: string.unquoted.anafas
-        2: comment.line
-      pop: true
-
-  CMNT:
-    - meta_scope: meta.cmnt.anafas
-    - include: no-comments
-    - match: ^.*
-      scope: string.unquoted.anafas
+        2: comment.line.anafas
       pop: true
 
   BASE:
     - include: comment
-    - match: '\b((([0-9]+\.?[0-9]*)|(\.[0-9]+)))?\b'
+    - meta_scope: meta.base.anafas
+
+    - match: '^((([0-9]+\.?[0-9]*)|(\.[0-9]+)))?\b'
       scope: constant.numeric.anafas
       pop: true
 
-  DBAR:
-    - include: card-end
+  CMNT:
+    - include: comment
+    - meta_scope: meta.cmnt.anafas
+
+    - match: "(?<=CMNT {4}|  2 {5})[ 0-9][0-9]"
+      scope: constant.numeric.anafas
+
+    - match: ^(.{1,80})(.*)
+      captures:
+        1: string.unquoted.anafas
+        2: comment.line.anafas
+      pop: true
+
+
+  DBAR_peco:
+    - include: card_end
     - include: comment
 
-    - comment: comment final da linha
+    - comment: comentario final da linha
       match: (?i)(?<=.{77}).*$
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: F
       match: (?i)(?<=.{76})[NFAGC ]
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: whitespace
       match: (?i)(?<=.{75}).
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: SA
       match: (?i)(?<=.{72}).{3}
-      scope: support.class
+      scope: support.class.anafas
 
     - comment: IA
       match: (?i)(?<=.{69}).{3}
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: whitespace
       match: (?i)(?<=.{68}).
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: Data_F
       match: (?i)(?<=.{60}).{8}
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: Data_I
       match: (?i)(?<=.{52}).{8}
-      scope: support.class
+      scope: support.class.anafas
 
     - comment: whitespace
       match: (?i)(?<=.{42}).{10}
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: Disjun (Ka)
       match: (?i)(?<=.{36}).{6}
-      scope: support.class
+      scope: support.class.anafas
 
     - comment: whitespace
       match: (?i)(?<=.{34}).{1}
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: Vbase
       match: (?i)(?<=.{31}).{4}
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: whitespace
       match: (?i)(?<=.{30}).{1}
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: Ang
       match: (?i)(?<=.{26}).{4}
-      scope: support.class
+      scope: support.class.anafas
 
     - comment: Vpre
       match: (?i)(?<=.{22}).{4}
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: whitespace
       match: (?i)(?<=.{21}).
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: (   nome   )
       match: (?i)(?<=.{9})[a-zA-Z0-9_\-+. ]{12}
@@ -209,113 +250,121 @@ contexts:
 
     - comment: whitespace
       match: (?i)(?<=.{8}).
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: MP (tipo da barra)
       match: (?i)(?<=.{7})[012 ]
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: E (estado operativo da barra)
       match: (?i)(?<=.{6})[LD ]
-      scope: support.class
+      scope: support.class.anafas
 
     - comment: C (código de atualização)
       match: (?i)(?<=.{5})[AEM0124 ]
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: NB (número da barra)
       match: ^[0-9 ]{5}
-      scope: support.class
+      scope: support.class.anafas
 
-  DCIR:
-    - include: card-end
+  DCIR_peco:
+    - include: card_end
     - include: comment
 
-    - comment: comment de final de linha (temporário)
+    - comment: comentario de final de linha (temporário)
       match: (?i)(?<=.{67}).*$
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: TB (barra do trafo delta-estrela, lado delta)
       match: (?i)(?<=.{62})[0-9 ]{5}
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: whitespace
       match: (?i)(?<=^.{47}).{15}
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: CN
       match: (?i)(?<=^.{41}).{6}
-      scope: string
+      scope: string.anafas
 
     - comment: X0
       match: (?i)(?<=^.{35}).{6}
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: R0
       match: (?i)(?<=^.{29}).{6}
-      scope: support.class
+      scope: support.class.anafas
 
     - comment: X1
       match: (?i)(?<=^.{23}).{6}
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: R1
       match: (?i)(?<=^.{17}).{6}
-      scope: support.class
+      scope: support.class.anafas
 
     - comment: Tipo
       match: (?i)(?<=^.{16})[ GLTCHSZ]
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: NC (numero do circuito)
       match: (?i)(?<=^.{14})[0-9 ]{2}
-      scope: support.class
+      scope: support.class.anafas
 
     - comment: whitespace
       match: (?i)(?<=^.{12}).{2}
-      scope: comment.line
+      scope: comment.line.anafas
 
     - comment: BT (número da barra PARA)
       match: (?i)(?<=^.{7})[0-9 ]{5}
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: E (estado operativo do circuito)
       match: (?i)(?<=^.{6})[LDB ]
-      scope: support.class
+      scope: support.class.anafas
 
     - comment: C (código de atualização)
       match: (?i)(?<=^.{5})[AEM0124 ]
-      scope: constant.numeric
+      scope: constant.numeric.anafas
 
     - comment: BF (número da barra DE)
       match: ^[0-9 ]{5}
-      scope: support.class
+      scope: support.class.anafas
+
+  DBAR_anafas:
+    - include: card_end
+    - include: comment
+
+  DCIR_anafas:
+    - include: card_end
+    - include: comment
 
   DMUT:
-    - include: card-end
+    - include: card_end
     - include: comment
     - include: numbers
 
   DMOV:
-    - include: card-end
+    - include: card_end
     - include: comment
     - include: numbers
 
   DSHL:
-    - include: card-end
+    - include: card_end
     - include: comment
     - include: numbers
 
   DEOL:
-    - include: card-end
+    - include: card_end
     - include: comment
     - include: numbers
 
   DARE:
-    - include: card-end
+    - include: card_end
     - include: comment
 
-    - comment: comment final da linha
+    - comment: comentario final da linha
       match: (?i)(?<=^.{54}).*$
       scope: comment.block.anafas
 
@@ -323,15 +372,15 @@ contexts:
       match: (?i)(?<=^.{18}).{1,36}
       scope: entity.name.area.anafas
 
-    - comment: comment entre campos
+    - comment: comentario entre campos
       match: (?i)(?<=^.{6}).{12}
       scope: comment.block.anafas
 
     - comment: C
       match: (?i)(?<=^.{5}).
-      scope: support.class
+      scope: support.class.anafas
 
-    - comment: comment entre campos
+    - comment: comentario entre campos
       match: (?i)(?<=^.{3}).{2}
       scope: comment.block.anafas
 
@@ -339,10 +388,31 @@ contexts:
       match: (?i)^[0-9 ]{3}
       scope: constant.numeric.anafas
 
-  FIM:
-    - meta_scope: comment.block.anafas meta.fim.anafas
 
+  DREB:
+    - include: card_end
+    - include: comment
+
+    - meta_scope: meta.dreb.anafas
+    - comment: first number
+      match: "[0-9]{1,5}"
+      scope: constant.numeric.anafas
+      push:
+        - include: eol-pop
+        - comment: whitspace
+          match: "\\s+"
+          scope: comment.character.anafas
+          push:
+            - include: eol-pop
+            - comment: second number
+              match: "[0-9]{1,5}"
+              scope: constant.numeric.anafas
+              push:
+                - include: eol-pop
+                - match: (.)*$
+                  scope: comment.line.anafas
+                  pop: true
 
   options:
     - match: \b({{options}})\b
-      scope: variable.language
+      scope: variable.language.anafas

@@ -1,0 +1,4 @@
+*.bat
+*.sublime-workspace
+*.sublime-project
+examples/
