@@ -2,7 +2,9 @@
 
 Anafas file syntax definitions and auto complete for Sublime Text 3.
 
-🇵🇹-🇧🇷 Coloração de sintaxe e autocompletar para arquivos do Anafas no Sublime Text 3.
+Anafas is a power system fault analysis tool. Network data is specified in a positional/fixed file format delimited by execution codes.
+
+🇵🇹 🇧🇷 Coloração de sintaxe e autocompletar para arquivos do Anafas no Sublime Text 3.
 
 ## Features
 
@@ -12,8 +14,9 @@ Anafas file syntax definitions and auto complete for Sublime Text 3.
 - Semantic code folding (currently Fold All/Unfold All)
 - Delete all comments
 
-🇵🇹-🇧🇷 Na atual versão alguns códigos de execução são suportados. A tabela à seguir contém a lista de códigos de execução e quais recursos a versão mais recente suporta.
+🇵🇹 🇧🇷 Na atual versão alguns códigos de execução são suportados. A tabela à seguir contém a lista de códigos de execução e quais recursos a versão mais recente suporta.
 
+|  Code  |   Syntax  | Auto Complete | Ruler |  Fold/Unfold All   |
 | Código | Coloração | Autocompletar | Régua | Contração/Expansão |
 |:------:|:---------:|:-------------:|:-----:|:------------------:|
 | BASE 	 |     X     |       X       |   X   |                    |
@@ -43,5 +46,5 @@ Feel free to report any bugs you find. You are welcome to fork and submit pull r
 
 The syntax definition is available at [GitHub](https://github.com/dparrini/sublime_opendss) under the MIT license.
 
-🇵🇹-🇧🇷 Definições de sintaxe disponíveis no [GitHub](https://github.com/dparrini/sublime_opendss) sob a licença MIT.
+🇵🇹 🇧🇷 Definições de sintaxe disponíveis no [GitHub](https://github.com/dparrini/sublime_opendss) sob a licença MIT.
 
