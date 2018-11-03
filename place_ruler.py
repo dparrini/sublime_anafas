@@ -26,8 +26,15 @@ class PlaceRulerCommand(sublime_plugin.TextCommand):
             else:
                 ruler = RULER_DEFAULT
 
-            # insert ruler
-            self.view.insert(edit, line.begin(), ruler + "\n")
+
+            if iline > at_line:
+                # insert ruler
+                where = line.begin()
+            else:
+                where = self.view.text_point(at_line + 1, 0)
+
+            self.view.insert(edit, where, ruler + "\n")
+
 
 
 DEBUG_MESSAGES = True
