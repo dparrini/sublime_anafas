@@ -16,7 +16,6 @@ Anafas is a power system fault analysis tool. Network data is specified in a pos
 
 🇵🇹 🇧🇷 Na atual versão alguns códigos de execução são suportados. A tabela à seguir contém a lista de códigos de execução e quais recursos a versão mais recente suporta.
 
-|  Code  |   Syntax  | Auto Complete | Ruler |  Fold/Unfold All   |
 | Código | Coloração | Autocompletar | Régua | Contração/Expansão |
 |:------:|:---------:|:-------------:|:-----:|:------------------:|
 | BASE 	 |     X     |       X       |   X   |                    |
