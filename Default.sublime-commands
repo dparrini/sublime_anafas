@@ -1,0 +1,6 @@
+[
+	{
+        "caption": "Anafas: insert ruler",
+        "command": "place_ruler"
+    },
+]

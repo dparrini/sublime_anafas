@@ -1,0 +1,6 @@
+[
+    {
+        "caption": "Insert ruler",
+        "command": "place_ruler"
+    }
+]
