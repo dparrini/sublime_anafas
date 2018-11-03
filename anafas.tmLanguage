@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>ana</string>
+	</array>
+	<key>name</key>
+	<string>Anafas</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(TIPO|  0)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(TITU|  1)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(CMNT|  2)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(BASE|100)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(DMUT| 39)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(DMOV| 36)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(DSHL| 35)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(DEOL)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(DARE)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(DREB)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(FIM| 99)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(DBAR| 38)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)^(DCIR| 37)</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^(99999|F)(\s)*$</string>
+			<key>name</key>
+			<string>keyword.control.anafas</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^\(.*$</string>
+			<key>name</key>
+			<string>comment.line.anafas</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.anafas</string>
+</dict>
+</plist>

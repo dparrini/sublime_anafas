@@ -7,7 +7,7 @@ scope: source.anafas
 
 
 variables:
-  card_ending: "^99999|^F(\\s)*$"
+  card_ending: "^(99999|F)(\\s)*$"
 
 
 contexts:
@@ -58,7 +58,7 @@ contexts:
       scope: keyword.control.anafas
       push: DREB
 
-    - match: (?i)(?=^FIM| 99)
+    - match: (?i)(?=^FIM|^ 99)
       push: FIM
 
 

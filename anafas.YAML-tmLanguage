@@ -1,0 +1,54 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Anafas
+scopeName: source.anafas
+fileTypes: [ana]
+
+# fallback tmLanguage for Anafas file format
+
+patterns:
+  - match: "(?i)^(TIPO|  0)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(TITU|  1)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(CMNT|  2)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(BASE|100)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(DMUT| 39)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(DMOV| 36)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(DSHL| 35)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(DEOL)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(DARE)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(DREB)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(FIM| 99)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(DBAR| 38)"
+    name: keyword.control.anafas
+
+  - match: "(?i)^(DCIR| 37)"
+    name: keyword.control.anafas
+
+  - match: "^(99999|F)(\\s)*$"
+    name: keyword.control.anafas
+
+  - match: "^\\(.*$"
+    name: comment.line.anafas
+      
