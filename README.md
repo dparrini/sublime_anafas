@@ -36,7 +36,6 @@ Na atual versão alguns códigos de execução são suportados. A tabela à segu
 | DBAR 	 |     X     |       X       |   X   |
 | DCIR 	 |           |       X       |   X   |
 | DEOL 	 |           |       X       |   X   |
-| DMOT 	 |           |       X       |   X   |
 | DMOV 	 |           |       X       |   X   |
 | DMUT 	 |           |       X       |   X   |
 | DREB 	 |     X     |       X       |       |

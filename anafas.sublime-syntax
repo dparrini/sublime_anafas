@@ -1,13 +1,13 @@
 %YAML 1.2
 ---
-name: ANAFAS
+name: Anafas
+file_extensions:
+  - ana
 scope: source.anafas
-file_extensions: [ana]
 
 
 variables:
   card_ending: "^99999|^F(\\s)*$"
-  options: "(?i)(/+|1046|80CO|CCCO|CILH|CONV|CONT|DCNI|DESV|DLCC|DNWT|ECHO|IEPS|IERR|FILE|FLXT|FREQ|GRAV|IMPR|INIC|IRMX|LIST|MCDU|MD01|MD02|MD03|MD04|MD05|MD06|MD07|MD08|MD09|MD10|MD11|MD12|MD13|MD14|MD15|MD16|MD17|MD18|MD19|MD20|MD21|MD22|MD23|MD24|NEWT|RBAR|RBCN|RBER|RBLI|RCAR|RCDU|RCEN|RCMT|RCSC|RCTE|RCVP|RCVT|RDIM|RERA|REST|RGER|RILH|RLDC|RLIN|RLOG|RMOT|RMXG|RMXY|ROPC|ROPG|SADD|SAD2|SAD3)"
 
 
 contexts:
@@ -412,7 +412,3 @@ contexts:
                 - match: (.)*$
                   scope: comment.line.anafas
                   pop: true
-
-  options:
-    - match: \b({{options}})\b
-      scope: variable.language.anafas

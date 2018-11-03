@@ -1,0 +1,133 @@
+( SYNTAX TEST "Anafas.sublime-syntax"
+
+( Line comment
+(<- punctuation.definition.comment.anafas
+(^ comment.line.anafas
+
+TIPO
+(<- meta.tipo.anafas keyword.control.anafas
+P
+(<- meta.tipo.anafas constant.language.anafas
+
+(
+TITU     1
+(^^^^^^^ meta.titu.anafas
+(        ^ constant.numeric.anafas
+titulo
+(^^^^^ meta.titu.anafas string.unquoted.anafas
+
+TITU     2
+ONS = SISTEMA INTERLIGADO = CONFIG DEZ/2018 = VERSAO 10/01/2017 = BR1812PZ.ANA =======
+(                                                                               ^^ meta.titu.anafas comment.line.anafas
+
+CMNT     1
+(<- keyword.control.anafas
+(^^^ meta.cmnt.anafas keyword.control.anafas
+(        ^ meta.cmnt.anafas constant.numeric.anafas
+comentario
+(
+
+CMNT     2
+Comentario =========================================================================
+(                                                                               ^^ meta.cmnt.anafas comment.line.anafas
+
+BASE
+(<- meta.base.anafas keyword.control.anafas
+100
+(<- meta.base.anafas constant.numeric.anafas
+
+DARE
+(<- keyword.control.anafas
+(
+(<- comment.line.anafas punctuation.definition.comment.anafas
+99999
+(<- keyword.control.anafas
+
+
+DBAR
+(<- keyword.control.anafas
+(
+(<- comment.line.anafas
+99999
+(<- keyword.control.anafas
+
+DCIR
+(<- keyword.control.anafas
+(
+(<- comment.line.anafas
+F
+(<- keyword.control.anafas
+
+DMUT
+(<- keyword.control.anafas
+(
+(<- comment.line.anafas punctuation.definition.comment.anafas
+99999
+(<- keyword.control.anafas
+
+DMOV
+(<- keyword.control.anafas
+(
+(<- comment.line.anafas punctuation.definition.comment.anafas
+99999
+(<- keyword.control.anafas
+
+DEOL
+(<- keyword.control.anafas
+(
+(<- comment.line.anafas punctuation.definition.comment.anafas
+99999
+(<- keyword.control.anafas
+
+DSHL
+(<- keyword.control.anafas
+(
+(<- comment.line.anafas punctuation.definition.comment.anafas
+99999
+(<- keyword.control.anafas
+
+DREB
+(<- keyword.control.anafas
+(
+(<- comment.line.anafas punctuation.definition.comment.anafas
+99999
+(<- keyword.control.anafas
+
+
+( ======================
+(   Legacy card names
+( ======================
+
+  1
+(^^ meta.titu.anafas keyword.control.anafas
+titulo
+
+  2
+(^^ meta.cmnt.anafas keyword.control.anafas
+comentario
+
+100
+(^^ meta.base.anafas keyword.control.anafas
+100
+
+ 39
+(^^ keyword.control.anafas
+F
+ 38
+(^^ keyword.control.anafas
+F
+ 37
+(^^ keyword.control.anafas
+F
+ 36
+(^^ keyword.control.anafas
+F
+ 35
+(^^ keyword.control.anafas
+F
+
+
+FIM
+(<- meta.fim.anafas keyword.control.anafas
+test
+(^^^ meta.fim.anafas comment.block.anafas
