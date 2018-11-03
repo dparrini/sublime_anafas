@@ -3,4 +3,8 @@
         "caption": "Anafas: insert ruler",
         "command": "place_ruler"
     },
+    {
+        "caption": "Anafas: delete all comments",
+        "command": "delete_all_comments"
+    },
 ]

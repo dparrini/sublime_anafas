@@ -26,7 +26,6 @@ class PlaceRulerCommand(sublime_plugin.TextCommand):
             else:
                 ruler = RULER_DEFAULT
 
-
             if iline > at_line:
                 # insert ruler
                 where = line.begin()

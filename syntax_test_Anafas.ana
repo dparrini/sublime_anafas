@@ -5,12 +5,13 @@
 (^ comment.line.anafas
 
 TIPO
-(<- meta.tipo.anafas keyword.control.anafas
+(<- meta.tipo.anafas keyword.control.anafas entity.name.card.anafas
 P
 (<- meta.tipo.anafas constant.language.anafas
 
 (
 TITU     1
+(^^^ meta.titu.anafas keyword.control.anafas
 (^^^^^^^ meta.titu.anafas
 (        ^ constant.numeric.anafas
 titulo
@@ -21,7 +22,7 @@ ONS = SISTEMA INTERLIGADO = CONFIG DEZ/2018 = VERSAO 10/01/2017 = BR1812PZ.ANA =
 (                                                                               ^^ meta.titu.anafas comment.line.anafas
 
 CMNT     1
-(<- keyword.control.anafas
+(<- keyword.control.anafas entity.name.card.anafas
 (^^^ meta.cmnt.anafas keyword.control.anafas
 (        ^ meta.cmnt.anafas constant.numeric.anafas
 comentario
@@ -32,12 +33,12 @@ Comentario =====================================================================
 (                                                                               ^^ meta.cmnt.anafas comment.line.anafas
 
 BASE
-(<- meta.base.anafas keyword.control.anafas
+(<- meta.base.anafas keyword.control.anafas entity.name.card.anafas
 100
 (<- meta.base.anafas constant.numeric.anafas
 
 DARE
-(<- keyword.control.anafas
+(<- keyword.control.anafas entity.name.card.anafas
 (
 (<- comment.line.anafas punctuation.definition.comment.anafas
 99999
@@ -45,49 +46,49 @@ DARE
 
 
 DBAR
-(<- keyword.control.anafas
+(<- keyword.control.anafas entity.name.card.anafas
 (
 (<- comment.line.anafas
 99999
 (<- keyword.control.anafas
 
 DCIR
-(<- keyword.control.anafas
+(<- keyword.control.anafas entity.name.card.anafas
 (
 (<- comment.line.anafas
 F
 (<- keyword.control.anafas
 
 DMUT
-(<- keyword.control.anafas
+(<- keyword.control.anafas entity.name.card.anafas
 (
 (<- comment.line.anafas punctuation.definition.comment.anafas
 99999
 (<- keyword.control.anafas
 
 DMOV
-(<- keyword.control.anafas
+(<- keyword.control.anafas entity.name.card.anafas
 (
 (<- comment.line.anafas punctuation.definition.comment.anafas
 99999
 (<- keyword.control.anafas
 
 DEOL
-(<- keyword.control.anafas
+(<- keyword.control.anafas entity.name.card.anafas
 (
 (<- comment.line.anafas punctuation.definition.comment.anafas
 99999
 (<- keyword.control.anafas
 
 DSHL
-(<- keyword.control.anafas
+(<- keyword.control.anafas entity.name.card.anafas
 (
 (<- comment.line.anafas punctuation.definition.comment.anafas
 99999
 (<- keyword.control.anafas
 
 DREB
-(<- keyword.control.anafas
+(<- keyword.control.anafas entity.name.card.anafas
 (
 (<- comment.line.anafas punctuation.definition.comment.anafas
 99999
@@ -99,35 +100,35 @@ DREB
 ( ======================
 
   1
-(^^ meta.titu.anafas keyword.control.anafas
+(^^ meta.titu.anafas keyword.control.anafas entity.name.card.anafas
 titulo
 
   2
-(^^ meta.cmnt.anafas keyword.control.anafas
+(^^ meta.cmnt.anafas keyword.control.anafas entity.name.card.anafas
 comentario
 
 100
-(^^ meta.base.anafas keyword.control.anafas
+(^^ meta.base.anafas keyword.control.anafas entity.name.card.anafas
 100
 
  39
-(^^ keyword.control.anafas
+(^^ keyword.control.anafas entity.name.card.anafas
 F
  38
-(^^ keyword.control.anafas
+(^^ keyword.control.anafas entity.name.card.anafas
 F
  37
-(^^ keyword.control.anafas
+(^^ keyword.control.anafas entity.name.card.anafas
 F
  36
-(^^ keyword.control.anafas
+(^^ keyword.control.anafas entity.name.card.anafas
 F
  35
-(^^ keyword.control.anafas
+(^^ keyword.control.anafas entity.name.card.anafas
 F
 
 
 FIM
-(<- meta.fim.anafas keyword.control.anafas
+(<- meta.fim.anafas keyword.control.anafas entity.name.card.anafas
 test
 (^^^ meta.fim.anafas comment.block.anafas

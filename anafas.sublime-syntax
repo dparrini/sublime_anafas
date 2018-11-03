@@ -16,46 +16,46 @@ contexts:
     - include: main_anafas
 
     - match: (?i)^(TIPO|  0)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: TIPO
 
   main_common:
     - include: comment
 
     - match: (?i)^(TITU|  1)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: TITU
 
     - match: (?i)^(CMNT|  2)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: CMNT
 
     - match: (?i)^(BASE|100)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: BASE
 
     - match: (?i)^(DMUT| 39)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DMUT
 
     - match: (?i)^(DMOV| 36)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DMOV
 
     - match: (?i)^(DSHL| 35)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DSHL
 
     - match: (?i)^(DEOL)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DEOL
 
     - match: (?i)^(DARE)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DARE
 
     - match: (?i)^(DREB)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DREB
 
     - match: (?i)(?=^FIM|^ 99)
@@ -67,11 +67,11 @@ contexts:
     - include: main_common
 
     - match: (?i)^(DBAR| 38)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DBAR_peco
 
     - match: (?i)^(DCIR| 37)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DCIR_peco
 
   main_anafas:
@@ -79,11 +79,11 @@ contexts:
     - include: main_common
 
     - match: (?i)^(DBAR| 38)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DBAR_anafas
 
     - match: (?i)^(DCIR| 37)
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
       push: DCIR_anafas
 
   eol-pop:
@@ -98,7 +98,7 @@ contexts:
   FIM:
     - meta_scope: meta.fim.anafas
     - match: (?i)^FIM
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas entity.name.card.anafas
     - match: .
       scope: comment.block.anafas
 
@@ -106,9 +106,9 @@ contexts:
     - match: (?=^\()
       push: comment_linha
 
-    - comment: após coluna 80
+    - comment: after 80 characters
       match: (?<=^.{80})(.*)
-      push: comment_coluna80
+      push: commen_80column
 
 
   comment_linha:
@@ -117,13 +117,12 @@ contexts:
       scope: punctuation.definition.comment.anafas
     - include: eol-pop
 
-  comment_coluna80:
+  commen_80column:
     - meta_scope: comment.block.anafas
     - include: eol-pop
 
   numbers:
-    - comment: Números
-      match: '\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b'
+    - match: '\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b'
       scope: constant.numeric.anafas
 
 
