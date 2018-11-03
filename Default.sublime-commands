@@ -1,10 +1,14 @@
 [
 	{
-        "caption": "Anafas: insert ruler",
+        "caption": "Anafas: Insert Ruler",
         "command": "place_ruler"
     },
     {
-        "caption": "Anafas: delete all comments",
+        "caption": "Anafas: Delete All Comments",
         "command": "delete_all_comments"
+    },
+    {
+        "caption": "Anafas: Fold All",
+        "command": "anafas_fold_all"
     },
 ]

@@ -1,6 +1,10 @@
 [
     {
-        "caption": "Insert ruler",
+        "caption": "Insert Ruler",
         "command": "place_ruler"
+    },
+    {
+        "caption": "Fold All",
+        "command": "anafas_fold_all"
     }
 ]
