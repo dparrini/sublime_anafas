@@ -43,7 +43,7 @@ Feel free to report any bugs you find. You are welcome to fork and submit pull r
 
 ## License
 
-The syntax definition is available at [GitHub](https://github.com/dparrini/sublime_opendss) under the MIT license.
+The syntax definition is available at [GitHub](https://github.com/dparrini/sublime_anafas) under the MIT license.
 
-🇵🇹 🇧🇷 Definições de sintaxe disponíveis no [GitHub](https://github.com/dparrini/sublime_opendss) sob a licença MIT.
+🇵🇹 🇧🇷 Definições de sintaxe disponíveis no [GitHub](https://github.com/dparrini/sublime_) sob a licença MIT.
 

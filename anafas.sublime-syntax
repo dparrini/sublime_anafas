@@ -16,46 +16,46 @@ contexts:
     - include: main_anafas
 
     - match: (?i)^(TIPO|  0)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: TIPO
 
   main_common:
     - include: comment
 
     - match: (?i)^(TITU|  1)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: TITU
 
     - match: (?i)^(CMNT|  2)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: CMNT
 
     - match: (?i)^(BASE|100)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: BASE
 
     - match: (?i)^(DMUT| 39)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DMUT
 
     - match: (?i)^(DMOV| 36)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DMOV
 
     - match: (?i)^(DSHL| 35)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DSHL
 
     - match: (?i)^(DEOL)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DEOL
 
     - match: (?i)^(DARE)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DARE
 
     - match: (?i)^(DREB)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DREB
 
     - match: (?i)(?=^FIM|^ 99)
@@ -67,11 +67,11 @@ contexts:
     - include: main_common
 
     - match: (?i)^(DBAR| 38)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DBAR_peco
 
     - match: (?i)^(DCIR| 37)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DCIR_peco
 
   main_anafas:
@@ -79,11 +79,11 @@ contexts:
     - include: main_common
 
     - match: (?i)^(DBAR| 38)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DBAR_anafas
 
     - match: (?i)^(DCIR| 37)
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
       push: DCIR_anafas
 
   eol-pop:
@@ -92,13 +92,13 @@ contexts:
 
   card_end:
     - match: "{{card_ending}}"
-      scope: keyword.control.anafas
+      scope: keyword.control.anafas keyword.other.anafas
       pop: true
 
   FIM:
     - meta_scope: meta.fim.anafas
     - match: (?i)^FIM
-      scope: keyword.control.anafas entity.name.card.anafas
+      scope: entity.name.card.anafas keyword.other.anafas
     - match: .
       scope: comment.block.anafas
 
